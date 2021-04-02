@@ -1,0 +1,76 @@
+# ______  ___   _ _  ______  ____   ____ 
+#/ ___\ \/ / | | | |/ /  _ \|  _ \ / ___|
+#\___ \\  /| |_| | ' /| | | | |_) | |    
+# ___) /  \|  _  | . \| |_| |  _ <| |___ 
+#|____/_/\_\_| |_|_|\_\____/|_| \_\\____|
+#                                        
+#
+
+# Terminal Emulator
+super + Return
+    st
+
+# Program Launcher
+super + o
+    dmenu_run
+
+# Reload sxhkd configuration
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# ------------------------------
+# bspwm hotkeys
+# ------------------------------
+
+# Quit/restart bspwm
+super + shift + {q,r}
+    bspc {quit,wm -r}
+
+# Close and kill
+super + {_,shift +}c
+    bspc node -{c,k}
+
+# Set the window state
+super + {t,shift + t,s,f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# focus the next/previous window in the current desktop
+super + {j,k}
+    bspc node -f {next,prev}.local.!hidden.window
+
+# resize the node in the given direction
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus on the next/previous monitor
+super + comma
+    bspc monitor -f next
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# focus on the next/previous monitor
+super + comma
+    bspc monitor last
+
+# --------------------------------
+# Environment keys
+# --------------------------------
+
+# Volume control
+super + {m,Up,Down}
+    pamixer {-t,-i 5,-d 5}
+
+# Set the wallpaper
+super + w
+    sxiv -t $HOME/Pictures/Wallpapers/*
+
+# Lock the screen
+super + shift + l
+    betterlockscreen -l blur
+

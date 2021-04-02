@@ -1,0 +1,201 @@
+;  ____       _       _                   ____             __ _       
+; |  _ \ ___ | |_   _| |__   __ _ _ __   / ___|___  _ __  / _(_) __ _ 
+; | |_) / _ \| | | | | '_ \ / _` | '__| | |   / _ \| '_ \| |_| |/ _` |
+; |  __/ (_) | | |_| | |_) | (_| | |    | |__| (_) | | | |  _| | (_| |
+; |_|   \___/|_|\__, |_.__/ \__,_|_|     \____\___/|_| |_|_| |_|\__, |
+;               |___/                                           |___/ 
+;
+; Polybar Config
+; Last Modified on December 4, 2020 at 7:46 AM
+
+[colors]
+bar = #99000000
+module = #333333
+label = #eeeeee
+label-secondary = #666666
+prefix = #aaaaaa
+alert = #ff9966
+
+[bar/main]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 22
+bottom = false
+fixed-center = true
+;override-redirect = true
+;wm-restack = bspwm
+
+background = ${colors.bar}
+foreground = ${colors.label}
+
+padding = 4
+module-margin = 3
+
+font-0 = Built Titling:style=Bold
+font-1 = Symbols Nerd Font:style=2048-em
+font-2 = JoyPixels:scale=10:antialias=true
+
+tray-position = right
+tray-padding = 2
+
+modules-left = bspwm
+modules-center = date weather
+modules-right =  pacupdates temperature mem cpu pulseaudio time
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/xwindow]
+type = interal/xsindow
+label = %title:0:30:...%
+
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+
+label-focused = %index%
+label-focused-background = ${colors.bar}
+label-focused-foreground = ${colors.label}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-foreground = ${colors.prefix}
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.label-secondary}
+label-empty-padding = 2
+
+[module/date]
+type = internal/date
+interval = 60
+
+date = %B %e, %Y
+
+format-prefix-foreground = ${colors.label}
+
+label = %date%
+
+[module/time]
+type = internal/date
+interval = 5
+
+time = %I:%M %p
+
+format-prefix-foreground = ${colors.label}
+
+label = %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+use-ui-max = false
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+
+label-muted = 🔇
+label-muted-foreground = ${colors.alert}
+
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+ramp-volume-foreground = ${colors.prefix}
+
+[module/logoff]
+type = custom/script
+exec = echo ""
+format = <label>
+label = %output%
+label-foreground = ${colors.label}
+
+click-left = xfce4-session-logout
+
+[module/pacupdates]
+type = custom/script
+exec = $HOME/.local/bin/pacavail
+interval = 3600
+
+format = <label>
+label = %output%
+label-foreground = ${colors.label}
+;format-prefix = " "
+;format-prefix-foreground = ${colors.prefix}
+
+[module/weather]
+type = custom/script
+exec = /home/rick/.local/bin/weather.py
+interval = 1800
+
+format = <label>
+label = %output%
+
+format-prefix = "🌤 "
+format-prefix-foreground = ${colors.prefix}
+
+click-left = qutebrowser https://www.accuweather.com/en/us/cloquet/55720/weather-forecast/333881
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+format = <label>
+label = %percentage%%
+
+format-prefix = "🖥 "
+;format-prefix = "CPU: "
+format-prefix-foreground = ${colors.prefix}
+
+[module/mem]
+type = custom/script
+exec = free -m | awk 'NR==2{ printf "%s MB",$3 }'
+interval = 5
+
+format = <label>
+label = %output%
+
+format-prefix = "🧠 "
+;format-prefix = "MEM: "
+format-prefix-foreground = ${colors.prefix}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp2_input
+base-temperature = 30
+warn-temperature = 80
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+;label-warn-foreground = ${colors.alert}
+
+ramp-foreground = ${colors.prefix}
+ramp-0 = 🌡
+ramp-1 = 🌡
+ramp-2 = 🌡
+ramp-3 = 🌡
+ramp-4 = 🔥
+ramp-4-foreground = ${colors.alert}
+
+[module/network]
+type = internal/network
+interface = enp4s0
+interval = 2
+
+format-connected = <label-connected>
+label-connected = %downspeed:9%
+
+format-connected-prefix = "⬇"
+format-connected-prefix-foreground = ${colors.prefix}
+
+; vim:ft=dosini
