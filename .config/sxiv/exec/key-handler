@@ -34,6 +34,7 @@ case "$1" in
     feh --bg-fill "$file"
     betterlockscreen -u "$file" -b 3 -r 1920x1080 &
     wal -ni "$file"
+    cd $HOME/.config/dwm && sudo make clean install
     gsettings set org.gnome.desktop.background picture-uri "file:///$file"    
     gsettings set org.gnome.desktop.background picture-options 'zoom'
 done;;
@@ -42,6 +43,7 @@ done;;
     feh --bg-fill --no-xinerama "$file"
     betterlockscreen -u "$file" -b 3 &
     wal -ni "$file"
+    cd $HOME/.config/dwm && sudo make clean install
     gsettings set org.gnome.desktop.background picture-uri "file:///$file"
     gsettings set org.gnome.desktop.background picture-options 'spanned'
 done;;
