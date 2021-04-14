@@ -2,7 +2,6 @@
 
 if [ $(pamixer --get-mute) = true ];then
     echo 🔇 
-    notify-send "Muted" -u low -i audio-volume-muted-symbolic
     exit
 fi
 
