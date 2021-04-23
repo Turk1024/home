@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/rick/websites/xvids.home.local'
+let g:netrw_dirhist_9='/home/rick/Documents/Web/xvids.turknet.com/html'
+let g:netrw_dirhist_8='/home/rick/Downloads'
 let g:netrw_dirhist_7='/home/rick/Documents/scripts/arch'
 let g:netrw_dirhist_6='/home/rick/Documents/scripts/arch/dwm'
 let g:netrw_dirhist_5='/home/rick/.config/polybar'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_4='/home/rick/Documents/Linux/DotFiles/.config/dwm'
 let g:netrw_dirhist_3='/home/rick/Documents/Linux/DotFiles/.config'
 let g:netrw_dirhist_2='/home/rick/Documents/Linux/DotFiles'
 let g:netrw_dirhist_1='/home/rick/Documents/Linux'
-let g:netrw_dirhist_0='/home/rick/Documents'
-let g:netrw_dirhist_9='/home/rick'
-let g:netrw_dirhist_8='/home/rick/.config'

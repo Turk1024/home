@@ -1,6 +1,0 @@
-#!/bin/bash
-
-wallpaper=$(find "$HOME/Pictures/Wallpapers/" -type f | shuf -n1)
-xwallpaper --zoom $wallpaper
-wal -i "$wallpaper" -n > /dev/null &
-

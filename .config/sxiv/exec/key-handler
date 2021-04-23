@@ -31,22 +31,14 @@ case "$1" in
 "C-slash")  rotate 180 ;;
 
 "C-w")      while read file; do
-    feh --bg-fill "$file"
-    betterlockscreen -u "$file" -b 3 -r 1920x1080 &
-    wal -ni "$file"
-    cd $HOME/.config/dwm && sudo make clean install
-    gsettings set org.gnome.desktop.background picture-uri "file:///$file"    
-    gsettings set org.gnome.desktop.background picture-options 'zoom'
+    cp "$file" $HOME/.local/share/backgrounds/background.jpg
+    xwallpaper --zoom "$file"
 done;;
 
 "C-s")      while read file; do
-    feh --bg-fill --no-xinerama "$file"
-    betterlockscreen -u "$file" -b 3 &
-    wal -ni "$file"
-    cd $HOME/.config/dwm && sudo make clean install
-    gsettings set org.gnome.desktop.background picture-uri "file:///$file"
-    gsettings set org.gnome.desktop.background picture-options 'spanned'
-done;;
+    cp "$file" $HOME/.local/share/backgrounds/background.jpg
+    xwallpaper --no-randr --zoom "$file"
+    done;;
 
 "C-p")      while read file; do wal -ni "$file" & done ;;
 esac

@@ -5,7 +5,7 @@ DEST=$HOME/Documents/Linux/home
 # *** COPY CONFIG FOLDER ***
 
 # DWM Environment
-if [ -f $HOME/.config/dwm/config.h ]; then
+if [ -d $HOME/.config/dwm ]; then
     suckless=("dwm" "st" "dwmblocks" "dmenu")
     for s in ${suckless[@]}; do
         rsync -av --progress $HOME/.config/$s $DEST/.config

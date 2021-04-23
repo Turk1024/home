@@ -13,8 +13,7 @@ export TERMINAL="st"
 # Start misc processes
 #exec picom -bC &
 xcompmgr &
-#$HOME/.fehbg &
-wp &
+exec xwallpaper --zoom $HOME/.local/share/backgrounds/background.jpg &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec dunst &
 exec xautolock -time 10 -locker "xset dpms force off" &

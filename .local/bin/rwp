@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Set background directory.  Create it if it doesn't exist
+walldir="$HOME/.local/share/backgrounds"
+[[ -d $walldir ]] || mkdir $walldir
+
+# Grab a random image from the wallpaper directory
+wallpaper=$(find "$HOME/Pictures/Wallpapers/" -type f | shuf -n1)
+cp $wallpaper $walldir/background.jpg
+
+# Set the wallpaper with xwallpaper
+xwallpaper --zoom $walldir/background.jpg
+
